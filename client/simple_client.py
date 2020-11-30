@@ -15,7 +15,7 @@ UNIT = 0x1
 def run_sync_client():
   
 
-    client = ModbusClient('localhost', port=502)
+    client = ModbusClient('localhost', port=5020)
     client.connect()
    
     # ------------------------------------------------------------------------#
