@@ -56,6 +56,8 @@ def run_server():
     identity.ModelName = config["MODEL_NAME"]
     identity.MajorMinorRevision = config["MAJOR_MINOR_REV"]
 
+    print("WAITING CLIENTS...\n")
+
     # ----------------------------------------------------------------------- #
     # run the server
     # ----------------------------------------------------------------------- #
@@ -66,5 +68,5 @@ def run_server():
 
 
 if __name__ == "__main__":
-    print("MODBUS TCP SERVER START\n")
+    print("MODBUS TCP SERVER STARTED\n")
     run_server()
