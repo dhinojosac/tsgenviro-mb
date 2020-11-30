@@ -66,4 +66,5 @@ def run_server():
 
 
 if __name__ == "__main__":
+    print("MODBUS TCP SERVER START\n")
     run_server()
