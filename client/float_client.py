@@ -83,7 +83,7 @@ if client.connect():    # connection is OK
     write32Float(client, 10, -34.1)
     write32Float(client, 0, 1.15)
     print (read32Float(client, 10))
-     print (read32Float(client, 0))
+    print (read32Float(client, 0))
 
     client.close()
 
