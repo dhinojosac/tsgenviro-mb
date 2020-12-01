@@ -20,7 +20,7 @@ def write32Float(client,address, value):
     payload = builder.build()
     client.write_registers(address, payload, skip_encode=True, unit=1) # write registers
 
-def read32Float(client,addres):
+def read32Float(client,address):
     result = client.read_holding_registers(address, 2,  unit=1)
     decoder = BinaryPayloadDecoder.fromRegisters(result.registers)
     decoded = decoder.decode_32bit_float()
@@ -32,6 +32,7 @@ ip_address = 'localhost'
 client = ModbusTcpClient(ip_address, port=5020)
 if client.connect():    # connection is OK
 
+    """
     # Create builder
     builder = BinaryPayloadBuilder()
      
@@ -72,13 +73,17 @@ if client.connect():    # connection is OK
     print("Decoded Data")
     print("-" * 60)
     print("%s\t", hex(decoded) if isinstance(decoded, int) else decoded)
+    """
 
     print("-" * 60)
     print("Test Functions")
     print("-" * 60)
-
-    write32Float(client, 0, -34.1)
-    print (read32Float(client, 0))
+    print()
+ 
+    write32Float(client, 10, -34.1)
+    write32Float(client, 0, 1.15)
+    print (read32Float(client, 10))
+     print (read32Float(client, 0))
 
     client.close()
 
