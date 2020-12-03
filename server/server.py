@@ -30,10 +30,10 @@ def run_server():
     # initialize registers
     # ----------------------------------------------------------------------- #
     store = ModbusSlaveContext(
-        di=ModbusSequentialDataBlock(0, [17]*100),      # discrete inputs
-        co=ModbusSequentialDataBlock(0, [17]*100),      # coils
-        hr=ModbusSequentialDataBlock(0, [17]*100),      # holding register
-        ir=ModbusSequentialDataBlock(0, [17]*100))      # input register
+        di=ModbusSequentialDataBlock(0, [0]*100),      # discrete inputs
+        co=ModbusSequentialDataBlock(0, [0]*100),      # coils
+        hr=ModbusSequentialDataBlock(0, [0]*100),      # holding register
+        ir=ModbusSequentialDataBlock(0, [0]*100))      # input register
 
     context = ModbusServerContext(slaves=store, single=True)
 

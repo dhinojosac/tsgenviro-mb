@@ -32,58 +32,35 @@ ip_address = 'localhost'
 client = ModbusTcpClient(ip_address, port=5020)
 if client.connect():    # connection is OK
 
-    """
-    # Create builder
-    builder = BinaryPayloadBuilder()
-     
-    DataFloat = -512.34
-
-    #builder.add_16bit_float(DataFloat)
-    #builder.add_16bit_float(DataFloat)
-    #builder.add_32bit_float(DataFloat)
-    builder.add_32bit_float(DataFloat)
-
-    payload = builder.to_registers()
-
-    print("-" * 60)
-    print("Writing Registers")
-    print("-" * 60)
-    print(payload)
-    print(len(payload))
-    print("\n")
-
-    payload = builder.build()
-
-    address = 0
-    client.write_registers(address, payload, skip_encode=True, unit=1) # write registers
-
-    # read registers
-    count = len(payload)
-    result = client.read_holding_registers(address, count,  unit=1)
-    print("-" * 60)
-    print("Registers")
-    print("-" * 60)
-    print(result.registers)
-    print("\n")
-
-    # decode registers to float32
-    decoder = BinaryPayloadDecoder.fromRegisters(result.registers)
-    decoded = decoder.decode_32bit_float()
-    print("-" * 60)
-    print("Decoded Data")
-    print("-" * 60)
-    print("%s\t", hex(decoded) if isinstance(decoded, int) else decoded)
-    """
-
     print("-" * 60)
     print("Test Functions")
     print("-" * 60)
     print()
+
+    UNIT=1
+    rq = client.write_register(1, 10, unit=UNIT)
+    rr = client.read_holding_registers(1, 1, unit=UNIT)
+    print(rr.registers[0])
  
-    write32Float(client, 10, -34.1)
-    write32Float(client, 0, 1.15)
-    print (read32Float(client, 10))
+    write32Float(client, 0, 0.05)
+    write32Float(client, 1, 1.15)
+    write32Float(client, 6, 99.2)
+    write32Float(client, 97, 65.78)
     print (read32Float(client, 0))
+    print (read32Float(client, 1))
+    print (read32Float(client, 2))
+    print (read32Float(client, 3))
+    print (read32Float(client, 97))
+
+    rq = client.write_register(98, 10, unit=UNIT)
+    rr = client.read_holding_registers(98, 1, unit=UNIT)
+
+    print(rr.registers[0])
+    
+    rr = client.read_holding_registers(95, 1, unit=UNIT)
+
+    print(rr.registers[0])
+
 
     client.close()
 
